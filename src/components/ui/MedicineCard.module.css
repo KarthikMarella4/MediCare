@@ -136,3 +136,25 @@
 .deleteBtn:hover {
   color: var(--status-removed);
 }
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+  }
+  .header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .badge {
+    align-self: flex-start;
+  }
+  .detailRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+  .label {
+    width: auto;
+    margin-bottom: 0.1rem;
+  }
+}

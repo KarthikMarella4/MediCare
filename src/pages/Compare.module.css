@@ -79,9 +79,36 @@
 }
 
 @media (max-width: 768px) {
+  .page {
+    padding: 2rem 1rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
   .header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
+  }
+  .actions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+  .actions button {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .summaryCards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .summaryCard {
+    padding: 1rem;
+  }
+  .summaryValue {
+    font-size: 2rem;
   }
 }

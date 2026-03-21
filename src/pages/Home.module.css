@@ -107,7 +107,20 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 3rem 1rem;
+    min-height: auto;
+  }
   .title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
+  }
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  .features {
+    padding: 4rem 1.5rem;
+  }
+  .featuresGrid {
+    grid-template-columns: 1fr;
   }
 }
