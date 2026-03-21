@@ -1,5 +1,5 @@
 import { ComparedMedicine } from '@/lib/types';
-import { FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { FiEdit2, FiTrash2, FiClock, FiSun, FiMoon, FiCloudRain, FiZap } from 'react-icons/fi';
 import styles from './MedicineCard.module.css';
 
 interface MedicineCardProps {
@@ -9,6 +9,16 @@ interface MedicineCardProps {
   onDelete?: () => void;
   showStatus?: boolean;
 }
+
+const getTimingIcon = (timing: string) => {
+  switch (timing) {
+    case 'Morning': return <FiSun className={styles.timingIcon} style={{ color: '#F59E0B' }} />;
+    case 'Afternoon': return <FiCloudRain className={styles.timingIcon} style={{ color: '#F97316' }} />;
+    case 'Night': return <FiMoon className={styles.timingIcon} style={{ color: '#6366F1' }} />;
+    case 'Multiple': return <FiZap className={styles.timingIcon} style={{ color: '#8B5CF6' }} />;
+    default: return <FiClock className={styles.timingIcon} style={{ color: '#9CA3AF' }} />;
+  }
+};
 
 export default function MedicineCard({ medicine, onClick, onEdit, onDelete, showStatus = true }: MedicineCardProps) {
   const getStatusClass = () => {
@@ -23,108 +33,111 @@ export default function MedicineCard({ medicine, onClick, onEdit, onDelete, show
 
   const getStatusLabel = () => {
     switch (medicine.status) {
-      case 'Added': return 'Newly Added';
-      case 'Removed': return 'Removed';
-      case 'Modified': return 'Modified Dose/Time';
-      case 'Unchanged': return 'Unchanged';
+      case 'Added': return '+ Newly Added';
+      case 'Removed': return '✕ Removed';
+      case 'Modified': return '⟳ Modified';
+      case 'Unchanged': return '✓ Unchanged';
       default: return '';
     }
   };
 
   return (
-    <div 
+    <div
       className={`${styles.card} ${getStatusClass()} ${onClick ? styles.clickable : ''}`}
       onClick={onClick}
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
     >
+      {/* Top accent bar */}
+      <div className={`${styles.accentBar} ${getStatusClass()}`} />
+
+      {/* Header row */}
       <div className={styles.header}>
-        <h3 className={styles.name}>{medicine.name}</h3>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div className={styles.nameGroup}>
+          <div className={`${styles.medicineAvatar} ${getStatusClass()}`}>
+            {medicine.name.charAt(0).toUpperCase()}
+          </div>
+          <div>
+            <h3 className={styles.name}>{medicine.name}</h3>
+            <p className={styles.usesInline}>{medicine.uses}</p>
+          </div>
+        </div>
+        <div className={styles.headerRight}>
           {showStatus && medicine.status !== 'Unchanged' && (
             <span className={`${styles.badge} ${getStatusClass()}`}>
               {getStatusLabel()}
             </span>
           )}
-          {onEdit && (
-            <button 
-              className={styles.editBtn} 
-              onClick={(e) => { e.stopPropagation(); onEdit(); }}
-              aria-label="Edit Medicine"
-            >
-              <FiEdit2 />
-            </button>
-          )}
-          {onDelete && (
-            <button
-              className={styles.deleteBtn}
-              onClick={(e) => { e.stopPropagation(); onDelete(); }}
-              aria-label="Delete Medicine"
-            >
-              <FiTrash2 />
-            </button>
-          )}
-        </div>
-      </div>
-
-      <div className={styles.details}>
-        <div className={styles.detailRow}>
-          <span className={styles.label}>Dosage:</span>
-          <span className={styles.value}>
-            {medicine.changes?.dosage ? (
-              <>
-                <span className={styles.oldValue}>{medicine.changes.dosage.old}</span>
-                <span className={styles.arrow}>→</span>
-                <span className={styles.newValue}>{medicine.changes.dosage.new}</span>
-              </>
-            ) : (
-              medicine.dosage
+          <div className={styles.actions}>
+            {onEdit && (
+              <button
+                className={styles.editBtn}
+                onClick={(e) => { e.stopPropagation(); onEdit(); }}
+                aria-label="Edit Medicine"
+              >
+                <FiEdit2 />
+              </button>
             )}
-          </span>
-        </div>
-
-        <div className={styles.detailRow}>
-          <span className={styles.label}>Timing:</span>
-          <span className={styles.value}>
-            {medicine.changes?.timing ? (
-              <>
-                <span className={styles.oldValue}>{medicine.changes.timing.old}</span>
-                <span className={styles.arrow}>→</span>
-                <span className={styles.newValue}>{medicine.changes.timing.new}</span>
-              </>
-            ) : (
-              medicine.timing
+            {onDelete && (
+              <button
+                className={styles.deleteBtn}
+                onClick={(e) => { e.stopPropagation(); onDelete(); }}
+                aria-label="Delete Medicine"
+              >
+                <FiTrash2 />
+              </button>
             )}
-          </span>
-        </div>
-
-        <div className={styles.detailRow}>
-          <span className={styles.label}>Instructions:</span>
-          <span className={styles.value}>
-            {medicine.changes?.foodInstruction ? (
-              <>
-                <span className={styles.oldValue}>{medicine.changes.foodInstruction.old}</span>
-                <span className={styles.arrow}>→</span>
-                <span className={styles.newValue}>{medicine.changes.foodInstruction.new}</span>
-              </>
-            ) : (
-              medicine.foodInstruction
-            )}
-          </span>
-        </div>
-
-        <div className={styles.usesRow}>
-          <span className={styles.label}>Uses:</span>
-          <p className={styles.uses}>{medicine.uses}</p>
-        </div>
-
-        {medicine.sideEffects && (
-          <div className={styles.usesRow} style={{ borderTop: '1px dashed rgba(239,68,68,0.15)', paddingTop: '0.75rem' }}>
-            <span className={styles.label} style={{ color: 'var(--status-removed)' }}>⚠️ Side Effects:</span>
-            <p className={styles.uses} style={{ color: 'var(--text-muted)', fontStyle: 'normal' }}>{medicine.sideEffects}</p>
           </div>
-        )}
+        </div>
       </div>
+
+      {/* Pill chips row */}
+      <div className={styles.chipsRow}>
+        {/* Dosage chip */}
+        <span className={`${styles.chip} ${styles.dosageChip}`}>
+          {medicine.changes?.dosage ? (
+            <>
+              <span className={styles.chipOld}>{medicine.changes.dosage.old}</span>
+              <span className={styles.chipArrow}>→</span>
+              <span className={styles.chipNew}>{medicine.changes.dosage.new}</span>
+            </>
+          ) : (
+            <>💊 {medicine.dosage}</>
+          )}
+        </span>
+
+        {/* Timing chip */}
+        <span className={`${styles.chip} ${styles.timingChip}`}>
+          {getTimingIcon(medicine.changes?.timing?.new || medicine.timing)}
+          {medicine.changes?.timing ? (
+            <>
+              <span className={styles.chipOld}>{medicine.changes.timing.old}</span>
+              <span className={styles.chipArrow}>→</span>
+              <span className={styles.chipNew}>{medicine.changes.timing.new}</span>
+            </>
+          ) : (
+            medicine.timing
+          )}
+        </span>
+
+        {/* Food chip */}
+        <span className={`${styles.chip} ${styles.foodChip}`}>
+          {medicine.changes?.foodInstruction ? (
+            <>
+              <span className={styles.chipOld}>{medicine.changes.foodInstruction.old}</span>
+              <span className={styles.chipArrow}>→</span>
+              <span className={styles.chipNew}>{medicine.changes.foodInstruction.new}</span>
+            </>
+          ) : (
+            <>🍽️ {medicine.foodInstruction}</>
+          )}
+        </span>
+      </div>
+
+      {/* Click hint */}
+      {onClick && (
+        <div className={styles.clickHint}>Tap for AI explanation →</div>
+      )}
     </div>
   );
 }

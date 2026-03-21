@@ -1,160 +1,316 @@
+/* === Card Base === */
 .card {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-radius: var(--radius-md);
-  padding: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-left: 6px solid var(--status-unchanged);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  position: relative;
+}
+
+.card.clickable {
+  cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255,255,255,0.8);
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 16px 40px rgba(79, 70, 229, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
-.card.added { border-left-color: var(--status-added); }
-.card.removed { border-left-color: var(--status-removed); opacity: 0.8; }
-.card.modified { border-left-color: var(--status-modified); }
+/* === Accent Bar === */
+.accentBar {
+  height: 5px;
+  width: 100%;
+  background: var(--status-unchanged);
+  transition: background 0.3s;
+}
 
-.card.added:hover { box-shadow: 0 15px 30px rgba(16, 185, 129, 0.15); }
-.card.removed:hover { box-shadow: 0 15px 30px rgba(239, 68, 68, 0.15); opacity: 1; }
-.card.modified:hover { box-shadow: 0 15px 30px rgba(245, 158, 11, 0.15); }
+.accentBar.added {
+  background: linear-gradient(90deg, #059669, #34D399);
+}
 
+.accentBar.removed {
+  background: linear-gradient(90deg, #DC2626, #F87171);
+}
+
+.accentBar.modified {
+  background: linear-gradient(90deg, #D97706, #FCD34D);
+}
+
+.accentBar.unchanged {
+  background: linear-gradient(90deg, #CBD5E1, #E2E8F0);
+}
+
+/* === Header === */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin: 0;
-  color: var(--text-main);
-}
-
-.badge {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  white-space: nowrap;
-}
-
-.badge.added { background: var(--status-added-bg); color: var(--status-added); }
-.badge.removed { background: var(--status-removed-bg); color: var(--status-removed); }
-.badge.modified { background: var(--status-modified-bg); color: var(--status-modified); }
-.badge.unchanged { background: #F1F5F9; color: var(--status-unchanged); }
-
-.details {
-  display: flex;
-  flex-direction: column;
+  padding: 1.25rem 1.25rem 0.75rem;
   gap: 0.75rem;
 }
 
-.detailRow {
+.nameGroup {
   display: flex;
   align-items: center;
-  font-size: 0.95rem;
+  gap: 0.875rem;
+  flex: 1;
+  min-width: 0;
 }
 
-.label {
-  width: 100px;
-  font-weight: 600;
-  color: var(--text-muted);
-  flex-shrink: 0;
-}
-
-.value {
-  color: var(--text-main);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.oldValue {
-  text-decoration: line-through;
-  color: var(--text-muted);
-}
-
-.arrow {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-}
-
-.newValue {
-  color: var(--status-modified);
-  font-weight: 600;
-}
-
-.usesRow {
-  margin-top: 0.5rem;
-  padding-top: 0.75rem;
-  border-top: 1px dashed rgba(0,0,0,0.08);
-}
-
-.uses {
-  margin-top: 0.25rem;
-  font-size: 0.9rem;
-  color: var(--text-main);
-  font-style: italic;
-}
-
-.editBtn {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  margin-left: 0.5rem;
-  transition: color 0.2s ease;
+.medicineAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.2rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #CBD5E1, #94A3B8);
+}
+
+.medicineAvatar.added {
+  background: linear-gradient(135deg, #059669, #34D399);
+}
+
+.medicineAvatar.removed {
+  background: linear-gradient(135deg, #DC2626, #F87171);
+}
+
+.medicineAvatar.modified {
+  background: linear-gradient(135deg, #D97706, #FBBF24);
+}
+
+.medicineAvatar.unchanged {
+  background: linear-gradient(135deg, #4F46E5, #818CF8);
+}
+
+.name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.2rem;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.usesInline {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-style: italic;
+}
+
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* === Badge === */
+.badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 30px;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+.badge.added {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.badge.removed {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.badge.modified {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.badge.unchanged {
+  background: #F1F5F9;
+  color: #64748B;
+}
+
+/* === Action Buttons === */
+.actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.editBtn {
+  font-size: 1rem;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  border-radius: 8px;
 }
 
 .editBtn:hover {
   color: var(--primary);
+  background: rgba(79, 70, 229, 0.08);
 }
 
 .deleteBtn {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--text-muted);
-  margin-left: 0.25rem;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.2rem;
+  padding: 0.3rem;
+  border-radius: 8px;
 }
 
 .deleteBtn:hover {
   color: var(--status-removed);
+  background: rgba(220, 38, 38, 0.08);
 }
 
+/* === Chips Row === */
+.chipsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0 1.25rem 1rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 30px;
+  white-space: nowrap;
+}
+
+.dosageChip {
+  background: rgba(79, 70, 229, 0.08);
+  color: var(--primary);
+  border: 1px solid rgba(79, 70, 229, 0.15);
+}
+
+.timingChip {
+  background: rgba(245, 158, 11, 0.08);
+  color: #B45309;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.foodChip {
+  background: rgba(16, 185, 129, 0.08);
+  color: #065F46;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.timingIcon {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+.chipOld {
+  text-decoration: line-through;
+  opacity: 0.6;
+  font-weight: 500;
+}
+
+.chipArrow {
+  opacity: 0.5;
+  font-size: 0.75rem;
+}
+
+.chipNew {
+  color: #D97706;
+  font-weight: 800;
+}
+
+/* === Side Effects === */
+.sideEffectsRow {
+  margin: 0 1.25rem 1rem;
+  padding: 0.6rem 0.875rem;
+  border-radius: var(--radius-sm);
+  background: rgba(239, 68, 68, 0.04);
+  border-left: 3px solid rgba(239, 68, 68, 0.3);
+}
+
+.sideEffectsLabel {
+  display: block;
+  font-size: 0.73rem;
+  font-weight: 700;
+  color: var(--status-removed);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.sideEffectsText {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* === Click Hint === */
+.clickHint {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 0.5rem 1.25rem 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .clickHint {
+  opacity: 1;
+  color: var(--primary);
+}
+
+/* === Mobile === */
 @media (max-width: 768px) {
-  .card {
-    padding: 1rem;
-  }
   .header {
     flex-direction: column;
     gap: 0.75rem;
   }
-  .badge {
-    align-self: flex-start;
+
+  .headerRight {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
   }
-  .detailRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
+
+  .chipsRow {
+    gap: 0.4rem;
   }
-  .label {
-    width: auto;
-    margin-bottom: 0.1rem;
+
+  .chip {
+    font-size: 0.78rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .name {
+    font-size: 1rem;
   }
 }
