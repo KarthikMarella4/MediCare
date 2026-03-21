@@ -10,6 +10,8 @@ export default function Navbar() {
         <Link to="/" className={styles.logo}>
           <span className="gradient-text">MediCom</span>
         </Link>
+
+        {/* Links */}
         <div className={styles.links}>
           <Link to="/" className={`${styles.link} ${pathname === '/' ? styles.active : ''}`}>Home</Link>
           <Link to="/upload" className={`${styles.link} ${pathname === '/upload' ? styles.active : ''}`}>Analyze</Link>
