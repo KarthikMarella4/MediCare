@@ -62,12 +62,14 @@
     gap: 1rem;
     padding: 1rem;
   }
+
   .links {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .link {
     font-size: 0.85rem;
     padding: 0.25rem;
