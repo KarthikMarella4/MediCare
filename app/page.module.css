@@ -1,0 +1,89 @@
+.hero {
+  min-height: calc(100vh - 80px); /* subtract exact navbar height later */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent 50%),
+              radial-gradient(circle at bottom left, rgba(20, 184, 166, 0.05), transparent 50%);
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Features Section */
+.features {
+  padding: 5rem 2rem;
+  background: var(--surface);
+}
+
+.featuresGrid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.featureIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--status-added-bg);
+  color: var(--status-added);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.featureIcon.compare {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--primary-light);
+}
+
+.featureIcon.schedule {
+  background: var(--status-modified-bg);
+  color: var(--status-modified);
+}
+
+.featureTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.featureText {
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}

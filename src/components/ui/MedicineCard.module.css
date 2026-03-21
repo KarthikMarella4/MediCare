@@ -1,0 +1,138 @@
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-left: 6px solid var(--status-unchanged);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255,255,255,0.8);
+}
+
+.card.added { border-left-color: var(--status-added); }
+.card.removed { border-left-color: var(--status-removed); opacity: 0.8; }
+.card.modified { border-left-color: var(--status-modified); }
+
+.card.added:hover { box-shadow: 0 15px 30px rgba(16, 185, 129, 0.15); }
+.card.removed:hover { box-shadow: 0 15px 30px rgba(239, 68, 68, 0.15); opacity: 1; }
+.card.modified:hover { box-shadow: 0 15px 30px rgba(245, 158, 11, 0.15); }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.badge.added { background: var(--status-added-bg); color: var(--status-added); }
+.badge.removed { background: var(--status-removed-bg); color: var(--status-removed); }
+.badge.modified { background: var(--status-modified-bg); color: var(--status-modified); }
+.badge.unchanged { background: #F1F5F9; color: var(--status-unchanged); }
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.detailRow {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.label {
+  width: 100px;
+  font-weight: 600;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.value {
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.oldValue {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.arrow {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.newValue {
+  color: var(--status-modified);
+  font-weight: 600;
+}
+
+.usesRow {
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(0,0,0,0.08);
+}
+
+.uses {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  font-style: italic;
+}
+
+.editBtn {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-left: 0.5rem;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+}
+
+.editBtn:hover {
+  color: var(--primary);
+}
+
+.deleteBtn {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-left: 0.25rem;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+}
+
+.deleteBtn:hover {
+  color: var(--status-removed);
+}
