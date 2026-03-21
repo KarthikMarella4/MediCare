@@ -85,7 +85,7 @@ export default function UploadPage() {
         >
           <Card className={styles.cardContent}>
             <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', textAlign: 'center' }}>
-              Upload your latest prescription — Gemini AI will identify and extract all medicines, dosages, and timing automatically.
+              Upload your latest prescription — our AI will identify and extract all medicines, dosages, and timing automatically.
             </p>
             <FileUpload 
               label="New Prescription" 

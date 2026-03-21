@@ -50,7 +50,7 @@ export default function Home() {
               </div>
               <h3 className={styles.featureTitle}>Instant AI Extraction</h3>
               <p className={styles.featureText}>
-                Our Gemini-powered AI reads your prescription image in seconds — no typing needed. It extracts every medicine, dosage, and timing automatically.
+                Our AI reads your prescription image in seconds — no typing needed. It extracts every medicine, dosage, and timing automatically.
               </p>
             </Card>
           </motion.div>
