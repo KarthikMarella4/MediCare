@@ -57,7 +57,7 @@ export default function SchedulePage() {
       
       pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
       const dateStr = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }).replace(/ /g, '-');
-      pdf.save(`MediCom-Schedule-${dateStr}.pdf`);
+      pdf.save(`MediCare-Schedule-${dateStr}.pdf`);
     } catch (error) {
       console.error('Error generating PDF:', error);
       alert('Failed to generate PDF. Please try again.');
@@ -143,7 +143,7 @@ export default function SchedulePage() {
         transition={{ delay: 0.1 }}
       >
         <div style={{ paddingBottom: '1rem', borderBottom: '2px dashed #E2E8F0', marginBottom: '1rem' }}>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--primary)' }}>MediCom</h2>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--primary)' }}>MediCare</h2>
           <p style={{ color: 'var(--text-muted)' }}>Daily Prescription Schedule • {new Date().toLocaleDateString()}</p>
         </div>
 

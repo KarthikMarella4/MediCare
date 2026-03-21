@@ -8,7 +8,7 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <Link to="/" className={styles.logo}>
-          <span className="gradient-text">MediCom</span>
+          <span className="gradient-text">MediCare</span>
         </Link>
 
         {/* Links */}
