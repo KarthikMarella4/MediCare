@@ -1,7 +1,15 @@
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .hero {
@@ -24,7 +32,7 @@
   position: absolute;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
   top: -100px;
   right: -100px;
   border-radius: 50%;
@@ -88,7 +96,7 @@
   justify-content: center;
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
-  box-shadow: inset 0 2px 4px rgba(255,255,255,0.5);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.5);
 }
 
 .featureIcon.compare {
@@ -117,15 +125,19 @@
     padding: 3rem 1rem;
     min-height: auto;
   }
+
   .title {
     font-size: 2.25rem;
   }
+
   .subtitle {
     font-size: 1.1rem;
   }
+
   .features {
     padding: 4rem 1.5rem;
   }
+
   .featuresGrid {
     grid-template-columns: 1fr;
   }

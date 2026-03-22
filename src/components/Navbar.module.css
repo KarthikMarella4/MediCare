@@ -38,8 +38,13 @@
   padding: 0.25rem 0;
 }
 
-.link:hover { color: var(--primary); }
-.link.active { color: var(--primary); }
+.link:hover {
+  color: var(--primary);
+}
+
+.link.active {
+  color: var(--primary);
+}
 
 .link.active::after {
   content: '';
@@ -58,12 +63,14 @@
     flex-direction: column;
     gap: 0.75rem;
   }
+
   .links {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .link {
     font-size: 0.9rem;
   }

@@ -14,9 +14,12 @@
 .card::before {
   content: '';
   position: absolute;
-  top: 0; left: -100%; right: 0; bottom: 0;
+  top: 0;
+  left: -100%;
+  right: 0;
+  bottom: 0;
   width: 50%;
-  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
   transform: skewX(-25deg);
   transition: all 0.7s ease;
   z-index: 1;
