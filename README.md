@@ -2,7 +2,6 @@
 
 <img width="1871" height="1080" alt="MediCare" src="https://github.com/user-attachments/assets/60f2328b-b7e3-4fc2-9d14-ab9dbff808eb" />
 
-### 🛠️ Tech Stack
 
 <p align="center">
   <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
